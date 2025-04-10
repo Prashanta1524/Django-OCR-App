@@ -1,0 +1,179 @@
+{% extends 'ocrapp/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="mb-4">निकालिएको डाटा</h2>
+        
+        <!-- Page 1 Data -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4 class="mb-0">पृष्ठ 1 डाटा</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>नाम थर</th>
+                                <th>ठेगाना</th>
+                                <th>मिति</th>
+                                <th>सिर्जना गरिएको मिति</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in page1_data %}
+                            <tr>
+                                <td>{{ item.full_name }}</td>
+                                <td>{{ item.address }}</td>
+                                <td>{{ item.date }}</td>
+                                <td>{{ item.created_at }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="4" class="text-center">कुनै डाटा उपलब्ध छैन</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 2 Data -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4 class="mb-0">पृष्ठ 2 डाटा</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>नाम थर</th>
+                                <th>लिङ्ग</th>
+                                <th>पेशा</th>
+                                <th>नागरिकता नम्बर</th>
+                                <th>जिल्ला</th>
+                                <th>नगरपालिका वा गा.वि.स.</th>
+                                <th>जन्म मिति</th>
+                                <th>बुवाको नाम</th>
+                                <th>तालिम लिएको स्थान</th>
+                                <th>तालिम मिति</th>
+                                <th>सिर्जना गरिएको मिति</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in page2_data %}
+                            <tr>
+                                <td>{{ item.full_name }}</td>
+                                <td>{{ item.gender }}</td>
+                                <td>{{ item.occupation }}</td>
+                                <td>{{ item.citizenship_number }}</td>
+                                <td>{{ item.district }}</td>
+                                <td>{{ item.municipality_or_vdc }}</td>
+                                <td>{{ item.date_of_birth }}</td>
+                                <td>{{ item.fathers_name }}</td>
+                                <td>{{ item.training_place }}</td>
+                                <td>{{ item.training_date }}</td>
+                                <td>{{ item.created_at }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="11" class="text-center">कुनै डाटा उपलब्ध छैन</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 3 Data -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4 class="mb-0">पृष्ठ 3 डाटा</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>नाम थर</th>
+                                <th>ठेगाना</th>
+                                <th>सिर्जना गरिएको मिति</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in page3_data %}
+                            <tr>
+                                <td>{{ item.full_name }}</td>
+                                <td>{{ item.address }}</td>
+                                <td>{{ item.created_at }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="3" class="text-center">कुनै डाटा उपलब्ध छैन</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 4 Data -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4 class="mb-0">पृष्ठ 4 डाटा</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>नाम थर</th>
+                                <th>जन्म मिति</th>
+                                <th>ठेगाना</th>
+                                <th>बुवाको नाम</th>
+                                <th>लिङ्ग</th>
+                                <th>पेशा</th>
+                                <th>मोबाइल नम्बर</th>
+                                <th>इमेल</th>
+                                <th>प्यान नम्बर</th>
+                                <th>बैंकको नाम</th>
+                                <th>बैंक खाता नम्बर</th>
+                                <th>साइन मिति</th>
+                                <th>सिर्जना गरिएको मिति</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in page4_data %}
+                            <tr>
+                                <td>{{ item.full_name }}</td>
+                                <td>{{ item.date_of_birth }}</td>
+                                <td>{{ item.address }}</td>
+                                <td>{{ item.fathers_name }}</td>
+                                <td>{{ item.gender }}</td>
+                                <td>{{ item.occupation }}</td>
+                                <td>{{ item.mobile_number }}</td>
+                                <td>{{ item.email }}</td>
+                                <td>{{ item.pan_number }}</td>
+                                <td>{{ item.bank_name }}</td>
+                                <td>{{ item.bank_account_number }}</td>
+                                <td>{{ item.signed_date }}</td>
+                                <td>{{ item.created_at }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="13" class="text-center">कुनै डाटा उपलब्ध छैन</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
