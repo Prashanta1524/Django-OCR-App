@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import default_storage
@@ -14,10 +14,16 @@ from .utils import (
     annotate_image_with_boxes, PAGE_FIELDS
 )
 import base64
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
+from django.contrib.auth.views import LoginView
 
+@login_required
 def home(request):
     return render(request, 'ocrapp/home.html')
 
+@login_required
 def view_data(request):
     # Fetch data from all tables
     page1_data = Page1.objects.all()
@@ -33,6 +39,7 @@ def view_data(request):
     }
     return render(request, 'ocrapp/view_data.html', context)
 
+@login_required
 @csrf_exempt
 def process_image(request):
     if request.method == 'POST' and request.FILES.get('image'):
@@ -155,3 +162,19 @@ def save_to_database(page_num, labeled_content):
             bank_account_number=labeled_content.get("बैंक खाता नम्बर", "नभेटियो"),
             signed_date=labeled_content.get("साइन मिति", "नभेटियो")
         )
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # Log the user in after registration
+            return redirect('home')
+    else:
+        form = UserCreationForm()
+    return render(request, 'ocrapp/register.html', {'form': form})
+
+from django.contrib.auth.views import LoginView
+
+class CustomLoginView(LoginView):
+    template_name = 'ocrapp/login.html'  # Specify the login template
